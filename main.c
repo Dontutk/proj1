@@ -169,21 +169,21 @@ void caesarcipherdecrypt(char inputt1[], char rk){              //the prototype 
     }
 
 fclose(output);}
-void subsitutionencrypt(char inputt2[], char sub[]){            //
-    FILE *output;
-    output = fopen("output.txt","w");
-    printf("\n text: %s\n key:%s\n ", inputt2, sub);
-    int l;
-    int i = 0;
+void subsitutionencrypt(char inputt2[], char sub[]){            //subsitutionencrypt a substitution cipher is a method of encrypting by which units of plaintext are replaced with ciphertext, according to a fixed system
+    FILE *output;                                               //pointer to the output, so the encrypted text can be output to there
+    output = fopen("output.txt","w");                            //same as above the fopen but it is w here which is writing, the use of writting is generate text into that file
+    printf("\n text: %s\n key:%s\n ", inputt2, sub);             //here just show the users for easier understanding
+    int l;                                                         //l is the length, we need to repeat it becasue this is a different function
+    int i = 0;                                                   //here the l is equal to the length of strin
     char word = 1;
     l = strlen(inputt2);
     printf("Encrypted text:\n ");
     while (i < l){
-        if(inputt2[i] == 'A'){
-            word = sub[0];
-            printf("%c", word);
-            fprintf(output, "%c", word);
-            i++;}
+        if(inputt2[i] == 'A'){                                  //here is allocatiing each letter to the subsitution key
+            word = sub[0];                                      //sub[0] is the the first one in the key
+            printf("%c", word);                                 //here is print in the program
+            fprintf(output, "%c", word);                        //here is print into the output.txt
+            i++;}                                               // the below is the same idea
         else if (inputt2[i] == 'B'){
             word = sub[1];
             printf("%c", word);
@@ -309,27 +309,27 @@ void subsitutionencrypt(char inputt2[], char sub[]){            //
             fprintf(output, "%c", word);
             printf("%c", word);
             i++;}
-        else if (inputt2[i] == 32){
+        else if (inputt2[i] == 32){                 // here is for the space same as above
             printf(" ");
             i++;}
-        else{ word = inputt2[i];
+        else{ word = inputt2[i];                    //this for the symbol, so the symbol wont be changes by the key
         printf("%c", word);
         i++;}
        
         }
         fclose(output);
         }
-void subsitutiondecrypt(char inputt3[], char sub2[]){
+void subsitutiondecrypt(char inputt3[], char sub2[]){ .              // here is for the decryption, we need to subsitute the key back to the original text
     printf("key: %s\ntext before decrypted:\n %s \n", sub2, inputt3);
-    FILE *output;
-    output = fopen("output.txt","w");
-    int i = 0;
-    int length;
+    FILE *output;                                   //create output
+    output = fopen("output.txt","w");               //use output.txt to write down the result
+    int i = 0;                                      //set i is 0
+    int length;                                     
     char word;
-    length = strlen(inputt3);
+    length = strlen(inputt3);                       
     printf("Decrypted text:\n");
     while (i <= length) {
-    if (inputt3[i] == sub2[0]){
+    if (inputt3[i] == sub2[0]){                     //here if the condition is matched, letter will be generated, almost same as above but we are doing decryption here
         printf("A");
         fprintf(output, "A");
         i++;}
@@ -433,17 +433,17 @@ void subsitutiondecrypt(char inputt3[], char sub2[]){
         printf("Z");
         fprintf(output, "Z");
         i++;}
-    else if(inputt3[i] == 32){
-        printf(" ");
+    else if(inputt3[i] == 32){                  //here is for the space because 32 in ASCII is space
+        printf(" ");                            // and used " " to perform it
         fprintf(output, " ");
         i++;}
     else{
-        word = inputt3[i];
+        word = inputt3[i];                      // here is for the symbol etc., so the symbol will not be changed by the key
         printf("%c", word);
         fprintf(output, "%c", word);
         i++;}  
     }
- fclose(output);}
+ fclose(output);}                              
  
     
 
