@@ -28,100 +28,100 @@ int main(){
 //switch statment for different cases
     switch(w){
         case(1):  //case1 will run when 1 was typed in menuselect.txt
-        printf("you chose 1.\n");
+        printf("you chose 1.\n");              //use printf to show what did the user select
         keyforcc = fopen("keyforcc.txt","r");  //open the file keyforcc.txt and read
         int rk;                                //intialise rk which is short form of rotation key
         fscanf(keyforcc, "%d", &rk);           //scan the file keyforcc and save as rk as a number        
         char inputt[1024];                     //inputt is array of char which save each character in inputt, 1024 is to minimise the character 
         text = fopen("input.txt", "r");        //read input.txt and save as text
-        fscanf(text, "%[^\n]s", inputt);            
+        fscanf(text, "%[^\n]s", inputt);       //scan file from input, [^\n] is for detect the whitespace     
         UPPERCASE(inputt);                     //change all lowercases to uppercase
         
-        caesarcipherencrypt(inputt, rk);        //run the prototype function
-        break;
+        caesarcipherencrypt(inputt, rk);        //run the prototype function of caesarcipher encryption
+        break;                                  
         
         case(2):        //case2 will run when 2 was typed in menuselect.txt
-        printf("you chose 2.\n");
+        printf("you chose 2.\n");               //use printf to show what did the user select
         keyforcc = fopen("keyforcc.txt", "r");  //open the file of keyforcc.txt and read and save for keyforcc
-        fscanf(keyforcc, "%d", &rk);
-        char inputt1[1023];
-        input = fopen("input.txt", "r");
-        fscanf(input, "%[^\n]s", inputt1);
-        UPPERCASE(inputt1);
-        caesarcipherdecrypt(inputt1, rk);
+        fscanf(keyforcc, "%d", &rk);            //scan the file keyforcc and save as rk which is a number of rotation chiper
+        char inputt1[1023];                     //minimise the letter prevent overload
+        input = fopen("input.txt", "r");        //set input is equal to the text in input.txt by reading
+        fscanf(input, "%[^\n]s", inputt1);      //scan file from input, [^\n] is for detect the whitespace 
+        UPPERCASE(inputt1);                     //make all lowercase to uppercase
+        caesarcipherdecrypt(inputt1, rk);       //run the prototype function of caesarcipher decryption
         
         break;
         
-        case(3):
-        printf("you chose 3.\n");
-        subkey = fopen("subkey.txt", "r");
-        char sub[26];
-        fscanf(subkey, "%[^\n]s", sub);
-        char inputt2[1024];
-        text = fopen("input.txt", "r");
-        fscanf(text, "%[^\n]s", inputt2);
-        UPPERCASE(sub);
-        UPPERCASE(inputt2);
-        subsitutionencrypt(inputt2, sub);
+        case(3):                                //case3 will run when 3 was typed in menuselect.txt
+        printf("you chose 3.\n");               //use printf to show what did the user select
+        subkey = fopen("subkey.txt", "r");      //subkey(which is the subsitution key) equal to the text in the subkey.txt
+        char sub[26];                           //char is mentioned to store 26 characters as key
+        fscanf(subkey, "%[^\n]s", sub);         //scan file from input, [^\n] is for detect the whitespace 
+        char inputt2[1024];                     //minimise the letter prevent overload  
+        text = fopen("input.txt", "r");         //fopen means open that file (input.txt) and read the text
+        fscanf(text, "%[^\n]s", inputt2);       //scan file from input, [^\n] is for detect the whitespace
+        UPPERCASE(sub);                         //make all lowercase to uppercase in sub(subsitution key)
+        UPPERCASE(inputt2);                     //make all lowercase to uppercase in inputt2
+        subsitutionencrypt(inputt2, sub);       //run the prototype function of subsitution encryption
         break;
         
-        case(4):
-        printf("you chose 4.\n");
-        subkey = fopen("subkey.txt", "r");
-        char sub2[26];
-        fscanf(subkey, "%[^\n]s", sub2);
-        char inputt3[1024];
-        input = fopen("input.txt", "r");
-        fscanf(input, "%[^\n]s", inputt3);
+        case(4):                                //case4 will run when 4 was typed in menuselect.txt
+        printf("you chose 4.\n");               //use printf to show what did the user select
+        subkey = fopen("subkey.txt", "r");      //scan file from input, [^\n] is for detect the whitespace  
+        char sub2[26];                          //char is mentioned to store 26 characters as key
+        fscanf(subkey, "%[^\n]s", sub2);        //scan file from input, [^\n] is for detect the whitespace
+        char inputt3[1024];                     //minimise the letter prevent overload
+        input = fopen("input.txt", "r");        //fopen means open that file (input.txt) and read the text
+        fscanf(input, "%[^\n]s", inputt3);      //scan file from input, [^\n] is for detect the whitespace and set as inputt3
         
-        UPPERCASE(sub2);
-        UPPERCASE(inputt3);
-        subsitutiondecrypt(inputt3, sub2);
+        UPPERCASE(sub2);                        //make all lowercase to uppercase in sub(subsitution key for decryption)
+        UPPERCASE(inputt3);                     //make all lowercase to uppercase in inputt2
+        subsitutiondecrypt(inputt3, sub2);       //run the prototype function of subsitution decryption
         break;
         
         default:
-        printf("wrong Number!!\n");
+        printf("wrong Number!!\n");              //this is used to prevent user typed the wrong number in menuselect.txt
     }
-    fclose(way);
+    fclose(way);                                 //at this point we can close the menuselect.txt
     return 0;
 }
-void UPPERCASE(char t[])
+void UPPERCASE(char t[])                          //prototype function of uppercase, this is useful, it can prevent users typed any lowercase th
 {
-    int i=0;
-    int l;
-    l = strlen (t);
-    while(i < l){
-        if((t[i]<123) && (t[i]>96)){
-            t[i] = t[i] -32;
+    int i=0;                                       //the integer i is saved as 0 which will be used later
+    int l;                                          //l is the length
+    l = strlen (t);                                 //here the l is equal to the length of string
+    while(i < l){                                   //while is a loop until the condition is achived then it will stop
+        if((t[i]<123) && (t[i]>96)){                //here i used ASCII to control the letter that i want 122 is z and 97 is a
+            t[i] = t[i] -32;                        // 32 is the character between lowercase and uppercase, so 122 - 32 = 90(Z)
         }
-        i++;
+        i++;                                        // i is set to increment to keep running
         }
-        printf("the text is changed to UPPERCASE text: %s\n", t);
+        printf("the text is changed to UPPERCASE text: %s\n", t); //show the user by printf
     }
     
-void caesarcipherencrypt(char inputt[], char rk){
-    FILE *output;
-    output = fopen("output.txt", "w");
-    char word = 1;
-    int l;
-    l = strlen(inputt);
+void caesarcipherencrypt(char inputt[], char rk){   //the prototype program will run here
+    FILE *output;                                    //pointer to the output, so the encrypted text can be output to there
+    output = fopen("output.txt", "w");               //same as above the fopen but it is w here which is writing, the use of writting is generate text into that file
+    char word = 1;                                   //this is a char variable  (word) which is initialise to 1
+    int l;                                           //l is the length, we need to repeat it becasue this is a different function
+    l = strlen(inputt);                              //here the l is equal to the length of string
     int i = 0;
-    printf("text: %s \n key: %d\n the encrypted text:\n", inputt, rk);
+    printf("text: %s \n key: %d\n the encrypted text:\n", inputt, rk);  //here is for user more easily to understand what is going on
     
-    while(i < l){
-        if((inputt[i]>=65) && (inputt[i]<=90 - rk)){
-            word = inputt[i] + rk;
-            printf("%c", word);
-            fprintf(output, "%c", word);
-            i++;
+    while(i < l){                                         
+        if((inputt[i]>=65) && (inputt[i]<=90 - rk)){            // same concept as above, here used the ASCII, so we can control what we want
+            word = inputt[i] + rk;                              // && is and, rk is rotation key
+            printf("%c", word);                                 // for printf -> it will be printed in the program
+            fprintf(output, "%c", word);                        // for fprintf -> it will be printed in the file (output)
+            i++;                                                    
         }
-        else if ((inputt[i] > 90 - rk) && (inputt[i] <= 90)){
+        else if ((inputt[i] > 90 - rk) && (inputt[i] <= 90)){    
             word = inputt[i] + rk -26;
             printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
-        else if(inputt[i] == 32){
+        else if(inputt[i] == 32){                               // 
             printf(" ");
             fprintf(output, " ");
             i++;
