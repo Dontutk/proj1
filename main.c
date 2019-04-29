@@ -99,7 +99,7 @@ void UPPERCASE(char t[])                          //prototype function of upperc
         printf("the text is changed to UPPERCASE text: %s\n", t); //show the user by printf
     }
     
-void caesarcipherencrypt(char inputt[], char rk){   //the prototype program will run here
+void caesarcipherencrypt(char inputt[], char rk){   //the prototype program will run here, rotation encryption id by shift letters, for example if u shift 2 a -> c
     FILE *output;                                    //pointer to the output, so the encrypted text can be output to there
     output = fopen("output.txt", "w");               //same as above the fopen but it is w here which is writing, the use of writting is generate text into that file
     char word = 1;                                   //this is a char variable  (word) which is initialise to 1
@@ -110,31 +110,31 @@ void caesarcipherencrypt(char inputt[], char rk){   //the prototype program will
     
     while(i < l){                                         
         if((inputt[i]>=65) && (inputt[i]<=90 - rk)){            // same concept as above, here used the ASCII, so we can control what we want
-            word = inputt[i] + rk;                              // && is and, rk is rotation key
+            word = inputt[i] + rk;                              // && is and, rk is rotation key(shift), when u add the rk, the result will be encypted
             printf("%c", word);                                 // for printf -> it will be printed in the program
             fprintf(output, "%c", word);                        // for fprintf -> it will be printed in the file (output)
             i++;                                                    
         }
-        else if ((inputt[i] > 90 - rk) && (inputt[i] <= 90)){    
-            word = inputt[i] + rk -26;
+        else if ((inputt[i] > 90 - rk) && (inputt[i] <= 90)){    //here is prevent for example if i need to shift 2 letter from z, i will return to b by minus 26
+            word = inputt[i] + rk -26;                           //prevent them turn to some unwanted symbols
             printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
-        else if(inputt[i] == 32){                               // 
+        else if(inputt[i] == 32){                               // 32 in ACSII is space, so here we print a space by printf
             printf(" ");
             fprintf(output, " ");
             i++;
         }
-        else{
-            word = inputt[i];
+        else{                                                   
+            word = inputt[i];                                   // here we can print the symbol without changing them 
             printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }   
-    } fclose(output);      
+    } fclose(output);                    
 }
-void caesarcipherdecrypt(char inputt1[], char rk){
+void caesarcipherdecrypt(char inputt1[], char rk){              //the prototype program will run here, rotation encryption id by shift letters, for example if u shift 2 a -> c           
     FILE *output;
     output = fopen("output.txt","w");
     int l;
