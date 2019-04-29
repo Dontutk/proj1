@@ -16,7 +16,7 @@ int main(){
     FILE *subkey; //pointer to file which is the key for subsitution chiper
     FILE *text; //pointer to file which is
 // provide a menu for users to choose which function they want to use by printf(...)
-    printf("Please choose the number below for encryption or decryption by enter number in menuselect.txt");
+    printf("Please choose the number below for encryption or decryption by enter number in menuselect.txt\n");
     printf("1. Encrypt to a rotation cipher.\n");
     printf("2. decrypt a rotiation cipher.\n");
     printf("3. Encrypt to a subsitution cipher.\n");
@@ -27,48 +27,52 @@ int main(){
     fscanf(way, "%d", &w);
 //switch statment for different cases
     switch(w){
-        case(1): //case1 will run when 1 was typed in menuselect.txt
+        case(1):  //case1 will run when 1 was typed in menuselect.txt
+        printf("you chose 1.\n");
         keyforcc = fopen("keyforcc.txt","r");  //open the file keyforcc.txt and read
         int rk;                                //intialise rk which is short form of rotation key
         fscanf(keyforcc, "%d", &rk);           //scan the file keyforcc and save as rk as a number        
         char inputt[1024];                     //inputt is array of char which save each character in inputt, 1024 is to minimise the character 
         text = fopen("input.txt", "r");        //read input.txt and save as text
-        fscanf(text, "%s", inputt);            
+        fscanf(text, "%[^\n]s", inputt);            
         UPPERCASE(inputt);                     //change all lowercases to uppercase
         
         caesarcipherencrypt(inputt, rk);        //run the prototype function
         break;
         
         case(2):        //case2 will run when 2 was typed in menuselect.txt
-        keyforcc = fopen("keyforcc", "r");  //open the file of keyforcc.txt and read and save for keyforcc
+        printf("you chose 2.\n");
+        keyforcc = fopen("keyforcc.txt", "r");  //open the file of keyforcc.txt and read and save for keyforcc
         fscanf(keyforcc, "%d", &rk);
-        char inputt1[1024];
+        char inputt1[1023];
         input = fopen("input.txt", "r");
-        fscanf(input, "%s", inputt1);
+        fscanf(input, "%[^\n]s", inputt1);
         UPPERCASE(inputt1);
         caesarcipherdecrypt(inputt1, rk);
         
         break;
         
         case(3):
+        printf("you chose 3.\n");
         subkey = fopen("subkey.txt", "r");
         char sub[26];
-        fscanf(subkey, "%s", sub);
+        fscanf(subkey, "%[^\n]s", sub);
         char inputt2[1024];
         text = fopen("input.txt", "r");
-        fscanf(text, "%s", inputt2);
+        fscanf(text, "%[^\n]s", inputt2);
         UPPERCASE(sub);
         UPPERCASE(inputt2);
         subsitutionencrypt(inputt2, sub);
         break;
         
         case(4):
+        printf("you chose 4.\n");
         subkey = fopen("subkey.txt", "r");
         char sub2[26];
-        fscanf(subkey, "%s", sub2);
+        fscanf(subkey, "%[^\n]s", sub2);
         char inputt3[1024];
         input = fopen("input.txt", "r");
-        fscanf(input, "%s", inputt3);
+        fscanf(input, "%[^\n]s", inputt3);
         
         UPPERCASE(sub2);
         UPPERCASE(inputt3);
@@ -102,16 +106,18 @@ void caesarcipherencrypt(char inputt[], char rk){
     int l;
     l = strlen(inputt);
     int i = 0;
-    printf("text: %s \n key: %d\n", inputt, rk);
+    printf("text: %s \n key: %d\n the encrypted text:\n", inputt, rk);
     
     while(i < l){
         if((inputt[i]>=65) && (inputt[i]<=90 - rk)){
             word = inputt[i] + rk;
+            printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
         else if ((inputt[i] > 90 - rk) && (inputt[i] <= 90)){
             word = inputt[i] + rk -26;
+            printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
@@ -135,7 +141,7 @@ void caesarcipherdecrypt(char inputt1[], char rk){
     l = strlen(inputt1);
     int i=0;
     char word = 1;
-    printf("text: %s \n key: %d \n", inputt1, rk);
+    printf("text: %s \n key: %d \n the decrypted text;\n", inputt1, rk);
     while(i<l){
         if((inputt1[i] >= 65) && (inputt1[i] <= 64 + rk)){
             word = inputt1[i] + (26-rk);
@@ -166,7 +172,7 @@ fclose(output);}
 void subsitutionencrypt(char inputt2[], char sub[]){
     FILE *output;
     output = fopen("output.txt","w");
-    printf("\n text: %s\n key:%s\n", inputt2, sub);
+    printf("\n text: %s\n key:%s\n ", inputt2, sub);
     int l;
     int i = 0;
     char word = 1;
