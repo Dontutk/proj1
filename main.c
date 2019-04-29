@@ -25,23 +25,22 @@ int main(){
     way = fopen("menuselect.txt", "r"); 
     int w;
     fscanf(way, "%d", &w);
-    
+//switch statment for different cases
     switch(w){
-        case(1):
-        keyforcc = fopen("keyforcc.txt","r");
-        int rk;
-        fscanf(keyforcc, "%d", &rk);
+        case(1): //case1 will run when 1 was typed in menuselect.txt
+        keyforcc = fopen("keyforcc.txt","r");  //open the file keyforcc.txt and read
+        int rk;                                //intialise rk which is short form of rotation key
+        fscanf(keyforcc, "%d", &rk);           //scan the file keyforcc and save as rk as a number        
+        char inputt[1024];                     //inputt is array of char which save each character in inputt, 1024 is to minimise the character 
+        text = fopen("input.txt", "r");        //read input.txt and save as text
+        fscanf(text, "%s", inputt);            
+        UPPERCASE(inputt);                     //change all lowercases to uppercase
         
-        char inputt[1024];
-        text = fopen("input.txt", "r");
-        fscanf(text, "%s", inputt);
-        UPPERCASE(inputt);
-        
-        caesarcipherencrypt(inputt, rk);
+        caesarcipherencrypt(inputt, rk);        //run the prototype function
         break;
         
-        case(2):        
-        keyforcc = fopen("keyforcc", "r");
+        case(2):        //case2 will run when 2 was typed in menuselect.txt
+        keyforcc = fopen("keyforcc", "r");  //open the file of keyforcc.txt and read and save for keyforcc
         fscanf(keyforcc, "%d", &rk);
         char inputt1[1024];
         input = fopen("input.txt", "r");
