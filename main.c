@@ -134,42 +134,42 @@ void caesarcipherencrypt(char inputt[], char rk){   //the prototype program will
         }   
     } fclose(output);                    
 }
-void caesarcipherdecrypt(char inputt1[], char rk){              //the prototype program will run here, rotation encryption id by shift letters, for example if u shift 2 a -> c           
-    FILE *output;
-    output = fopen("output.txt","w");
-    int l;
-    l = strlen(inputt1);
-    int i=0;
+void caesarcipherdecrypt(char inputt1[], char rk){              //the prototype program will run here, rotation decryption by shift letters, for example if u shift 2 c -> a           
+    FILE *output;                                               //pointer to the output, so the encrypted text can be output to there
+    output = fopen("output.txt","w");                           //same as above the fopen but it is w here which is writing, the use of writting is generate text into that file
+    int l;                                                      //l is the length, we need to repeat it becasue this is a different function
+    l = strlen(inputt1);                                        //here the l is equal to the length of strin
+    int i=0;                                                    //here the l is equal to the length of strin
     char word = 1;
     printf("text: %s \n key: %d \n the decrypted text;\n", inputt1, rk);
     while(i<l){
-        if((inputt1[i] >= 65) && (inputt1[i] <= 64 + rk)){
+        if((inputt1[i] >= 65) && (inputt1[i] <= 64 + rk)){      //work almost the same as encryption but here is - rk by getting the decrypted text
             word = inputt1[i] + (26-rk);
             printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
-        else if((inputt1[i]<=90)&&(inputt1[i]>64+rk)){
+        else if((inputt1[i]<=90)&&(inputt1[i]>64+rk)){           
             word = inputt1[i] - rk;
             printf("%c", word);
             fprintf(output, "%c", word);
             i++;
         }
-       else if(inputt1[i] == 32){
+       else if(inputt1[i] == 32){                               // 32 in ACSII is space, so here we print a space by printf
             printf(" ");
             fprintf(output, " ");
             i++;
         }
         else{
             word = inputt1[i];
-            printf("%c", word);
+            printf("%c", word);                                 // for symbol e.t.c.
             fprintf(output, "%c", word);
             i++;
         }   
     }
 
 fclose(output);}
-void subsitutionencrypt(char inputt2[], char sub[]){
+void subsitutionencrypt(char inputt2[], char sub[]){            //
     FILE *output;
     output = fopen("output.txt","w");
     printf("\n text: %s\n key:%s\n ", inputt2, sub);
