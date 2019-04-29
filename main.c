@@ -20,7 +20,7 @@ int main(){
     printf("1. Encrypt to a rotation cipher.\n");
     printf("2. decrypt a rotiation cipher.\n");
     printf("3. Encrypt to a subsitution cipher.\n");
-    printf("4. decrypt a suvsitution cipher.\n");
+    printf("4. decrypt a subsitution cipher.\n");
     
     way = fopen("menuselect.txt", "r"); 
     int w;
