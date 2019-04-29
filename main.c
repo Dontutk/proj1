@@ -1,28 +1,28 @@
 #include <stdio.h> //Functions for input & output.
-#include <stdlib.h> 
-#include <string.h>
+#include <stdlib.h> //Functions for general functions.
+#include <string.h>  //Functions for control arrays of characters.
 
-void UPPERCASE(char t[]);
-void caesarcipherencrypt(char inputt[], char rk);
-void caesarcipherdecrypt(char inputt1[], char rk);
-void subsitutionencrypt(char inputt2[], char sub[]);
-void subsitutiondecrypt(char inputt3[], char sub2[]);
+void UPPERCASE(char t[]); //function prototype for lowercase to uppercase
+void caesarcipherencrypt(char inputt[], char rk); //function prototype for encrypting a text by rotation cipher
+void caesarcipherdecrypt(char inputt1[], char rk); //function prototype for decrypting a encrypted text by rotation cipher
+void subsitutionencrypt(char inputt2[], char sub[]); //function prototype for encrypting a text by subsitution cipher
+void subsitutiondecrypt(char inputt3[], char sub2[]); //function prototype for decrypting a encrypted text by rotation cipher
 
 
 int main(){
-    FILE *way;
-    FILE *input;
-    FILE *keyforcc;
-    FILE *subkey;
-    FILE *text;
-    
+    FILE *way; //pointer to file which control menu
+    FILE *input; //pointer to file which types the text for encryption and decryption
+    FILE *keyforcc; //pointer to file which is key for rotation chiper
+    FILE *subkey; //pointer to file which is the key for subsitution chiper
+    FILE *text; //pointer to file which is
+// provide a menu for users to choose which function they want to use by printf(...)
     printf("Please choose the number below for encryption or decryption by enter number in menuselect.txt");
     printf("1. Encrypt to a rotation cipher.\n");
     printf("2. decrypt a rotiation cipher.\n");
     printf("3. Encrypt to a subsitution cipher.\n");
     printf("4. decrypt a suvsitution cipher.\n");
     
-    way = fopen("menuselect.txt", "r");
+    way = fopen("menuselect.txt", "r"); 
     int w;
     fscanf(way, "%d", &w);
     
